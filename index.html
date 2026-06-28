@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Embracing Dyslexia Project — Hadley</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ─── HOME HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 7rem 2.5rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 4rem;
+    }
+    .hero-text { flex: 1; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.2rem;
+    }
+    .hero-sub {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 500px;
+      margin-bottom: 2.2rem;
+      font-weight: 300;
+    }
+    .hero-stat {
+      display: inline-flex; align-items: baseline; gap: 0.4rem;
+      background: var(--blush);
+      border-radius: 100px;
+      padding: 0.5rem 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .hero-stat strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--teal);
+      font-weight: 700;
+    }
+    .hero-stat span { font-size: 0.88rem; color: var(--muted); }
+    .hero-quote { flex: 0 0 340px; position: relative; }
+    .quote-card {
+      background: var(--teal);
+      color: var(--cream);
+      border-radius: 24px;
+      padding: 2rem 2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .quote-card::before {
+      content: '\201C';
+      font-family: 'Playfair Display', serif;
+      font-size: 10rem;
+      color: rgba(255,255,255,0.08);
+      position: absolute;
+      top: -1rem; left: 1rem;
+      line-height: 1;
+    }
+    .hero-logo {
+      max-width: 220px;
+      width: 100%;
+      height: auto;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-quote::after {
+      content: '';
+      position: absolute;
+      width: 140px; height: 140px;
+      background: var(--rose);
+      border-radius: 50%;
+      bottom: -30px; right: -30px;
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    /* ─── HOME PREVIEW SECTIONS ─── */
+    .pillar-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .pillar-card {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      border-top: 4px solid var(--rose);
+    }
+    .pillar-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+    .pillar-icon:empty { display: none; margin-bottom: 0; }
+    .pillar-card p { font-size: 0.9rem; color: var(--muted); font-weight: 300; }
+
+    .preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 1.5rem; }
+    .preview-card {
+      background: var(--blush);
+      border-radius: 16px;
+      padding: 1.8rem;
+      display: flex; flex-direction: column; gap: 0.7rem;
+    }
+    .preview-card .tag {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--rose);
+    }
+    .preview-card p { font-size: 0.9rem; color: var(--muted); font-weight: 300; flex: 1; }
+    .preview-card a { font-size: 0.83rem; font-weight: 600; color: var(--teal); text-decoration: none; }
+    .preview-card a:hover { text-decoration: underline; }
+
+    @media (max-width: 800px) {
+      #hero { flex-direction: column; gap: 2.5rem; padding-top: 6rem; }
+      .hero-quote { flex: none; width: 100%; }
+      .pillar-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">Embracing Dyslexia Project</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="pages/about.html">About</a></li>
+      <li><a href="pages/resources.html">Resources</a></li>
+      <li><a href="pages/media.html">Media</a></li>
+      <li><a href="pages/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div id="hero">
+    <div class="hero-text">
+      <span class="eyebrow">Advocate. Support. Teach.</span>
+      <h1>Embracing Dyslexia Project <em> </em></h1>
+      <p class="hero-sub">Hi, I'm Hadley — an advocate, educator, and Miss America Opportunity participant on a mission to make sure the 1 in 5 with dyslexia are never left to struggle in silence.</p>
+      <div class="hero-stat">
+        <strong>1,000+</strong>
+        <span>dyslexia reading kits distributed in my community</span>
+      </div>
+      <br/>
+      <a class="btn" href="pages/resources.html">Explore Resources</a>
+      <a class="btn btn-ghost" href="pages/about.html">My Story</a>
+    </div>
+    <div class="hero-quote">
+      <div class="quote-card">
+        <img class="hero-logo" src="images/embracing dyslexia icon logo.png" alt="Embracing Dyslexia Project logo" />
+      </div>
+    </div>
+  </div>
+
+  <!-- PILLARS -->
+  <section style="background: var(--ivory);">
+    <div class="container">
+      <span class="section-label">My Mission</span>
+      <h2>Three pillars. One purpose.</h2>
+      <p class="section-intro">Everything I do comes back to these three commitments.</p>
+      <div class="pillar-row">
+        <div class="pillar-card">
+          <div class="pillar-icon"></div>
+          <h3>Advocate</h3>
+          <p>I speak up for the 1 in 5 people with dyslexia who are too often overlooked, misdiagnosed, or told to work harder — instead of smarter.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon"></div>
+          <h3>Support</h3>
+          <p>Through dyslexia reading kits and real-world resources, I give teachers, parents, and students the tools they need to thrive.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon"></div>
+          <h3>Teach</h3>
+          <p>Knowing the warning signs changes everything. I'm committed to spreading that knowledge — in classrooms, communities, and online.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-banner">
+    <div class="stats-grid">
+      <div>
+        <span class="stat-num">1 in 5</span>
+        <p class="stat-label">People have dyslexia — the most common learning disability</p>
+      </div>
+      <div>
+        <span class="stat-num">1,000+</span>
+        <p class="stat-label">Reading kits distributed in my community</p>
+      </div>
+      <div>
+        <span class="stat-num">70%</span>
+        <p class="stat-label">Of children with reading difficulties show signs of dyslexia</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESOURCE PREVIEW -->
+  <section>
+    <div class="container">
+      <span class="section-label">Resources</span>
+      <h2>Start here.</h2>
+      <p class="section-intro">A few of my most popular tools and guides — free for everyone.</p>
+      <div class="preview-grid">
+        <div class="preview-card">
+          <span class="tag">Warning Signs</span>
+          <h3>Signs of Dyslexia Guide</h3>
+          <p>A printable guide covering the early warning signs of dyslexia by age group.</p>
+          <a href="https://drive.google.com/file/d/1pKPkSdBBsDubqdAnACrVZSFYDV513KN3/view?usp=sharing" target="_blank">Download →</a>
+        </div>
+        <div class="preview-card">
+          <span class="tag">Learn</span>
+          <h3>Understanding Dyslexia</h3>
+          <p>An accessible visual guide to what dyslexia actually is — debunking myths and building real understanding.</p>
+          <a href="https://understanding-dyslexia.my.canva.site/" target="_blank">Read the guide →</a>
+        </div>
+        <div class="preview-card">
+          <span class="tag">Support</span>
+          <h3>How to Support Others</h3>
+          <p>Practical strategies for families and educators who want to meaningfully support someone with dyslexia.</p>
+          <a href="https://understanding-dyslexia.my.canva.site/how-to-support-others-with-dyslexia" target="_blank">Read the guide →</a>
+        </div>
+      </div>
+      <div style="margin-top: 2.5rem;">
+        <a class="btn" href="pages/resources.html">View All Resources</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Hadley · Embracing Dyslexia Project &nbsp;·&nbsp; Miss America Opportunity &nbsp;·&nbsp; <a href="mailto:embracing.dyslexia01@gmail.com">embracing.dyslexia01@gmail.com</a></p>
+  </footer>
+
+</body>
+</html>

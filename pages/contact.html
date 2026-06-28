@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Embracing Dyslexia Project</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    label { font-size: 0.85rem; font-weight: 600; color: var(--teal); }
+    input, textarea, select {
+      padding: 0.85rem 1rem;
+      border: 1.5px solid var(--blush);
+      border-radius: 10px;
+      background: var(--ivory);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--ink);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--teal); }
+    textarea { resize: vertical; min-height: 140px; }
+    .form-submit .btn { width: 100%; text-align: center; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; }
+
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .info-card {
+      background: var(--blush);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .info-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .info-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--teal); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .info-card p, .info-card a { font-size: 0.9rem; color: var(--muted); font-weight: 300; text-decoration: none; }
+    .info-card a:hover { color: var(--teal); }
+
+    .faq { margin-top: 1rem; }
+    .faq-item { border-bottom: 1px solid var(--blush); padding: 1.2rem 0; }
+    .faq-item h4 { font-size: 0.95rem; color: var(--teal); font-family: 'Playfair Display', serif; margin-bottom: 0.4rem; }
+    .faq-item p { font-size: 0.88rem; color: var(--muted); font-weight: 300; }
+
+    .success-msg {
+      display: none;
+      background: var(--ivory);
+      border: 1.5px solid var(--teal);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      color: var(--teal);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="../index.html">Embracing Dyslexia Project</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="media.html">Media</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-label">Contact</span>
+      <h1>Let's <em>connect.</em></h1>
+      <p>Whether you want to request a reading kit, book a speaking engagement, collaborate, or just say hello — I'd love to hear from you.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- FORM -->
+        <div>
+          <span class="section-label">Send a Message</span>
+          <h2>Get in touch.</h2>
+          <p style="color: var(--muted); font-weight: 300; margin-bottom: 2rem; font-size: 0.95rem;">Fill out the form below and I'll get back to you as soon as I can. You can also email me directly at <a href="mailto:embracing.dyslexia01@gmail.com" style="color: var(--teal);">embracing.dyslexia01@gmail.com</a>.</p>
+
+          <div class="contact-form">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" placeholder="First and last name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="you@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="reason">Reason for Reaching Out</label>
+              <select id="reason">
+                <option value="">Select one...</option>
+                <option>Request a Reading Kit</option>
+                <option>Speaking Engagement</option>
+                <option>Collaboration or Partnership</option>
+                <option>Media / Press Inquiry</option>
+                <option>General Question</option>
+                <option>Just saying hi!</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Tell me a little about what you have in mind..."></textarea>
+            </div>
+            <div class="form-submit">
+              <button class="btn" onclick="handleSubmit()">Send Message</button>
+            </div>
+            <div class="success-msg" id="successMsg">
+              ✅ Thank you for reaching out! I'll be in touch soon.
+            </div>
+          </div>
+        </div>
+
+        <!-- INFO + FAQ -->
+        <div>
+          <span class="section-label">Other Ways to Connect</span>
+          <h2>Find me here.</h2>
+          <div class="contact-info" style="margin-top: 1.5rem; margin-bottom: 3rem;">
+            <div class="info-card">
+              <div class="info-icon">✉️</div>
+              <div>
+                <h4>Email</h4>
+                <a href="mailto:embracing.dyslexia01@gmail.com">embracing.dyslexia01@gmail.com</a>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-icon">📸</div>
+              <div>
+                <h4>DM me on Instagram</h4>
+                <a href="https://instagram.com/embracing.dyslexia" target="_blank">@embracing.dyslexia</a>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-icon">▶️</div>
+              <div>
+                <h4>YouTube</h4>
+                <a href="https://www.youtube.com/channel/UCCdyasAPVzFI2F5M3LvDJuw?sub_confirmation=1" target="_blank">Embracing Dyslexia Channel</a>
+              </div>
+            </div>
+          </div>
+
+          <span class="section-label">Common Questions</span>
+          <div class="faq">
+            <div class="faq-item">
+              <h4>How do I request a reading kit?</h4>
+              <p>Fill out the form and select "Request a Reading Kit" I'll follow up with details! </p>
+            </div>
+            <div class="faq-item">
+              <h4>Are your resources really free?</h4>
+              <p>Yes! All of my guides and downloads are completely free. My mission is to make dyslexia support accessible to everyone.</p>
+            </div>
+            <div class="faq-item">
+              <h4>Can you speak at my school or event?</h4>
+              <p>I'd love to! I am based in Washington and Utah, regardless of where your event is, I would love to collaborate! Reach out through the form and let me know about your event. I speak to classrooms, parent groups, and community organizations, in person or through video calls.</p>
+            </div>
+            <div class="faq-item">
+              <h4>How quickly do you respond?</h4>
+              <p>I do my best to reply within a few days.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Hadley · Embracing Dyslexia Project &nbsp;·&nbsp; Miss America Opportunity &nbsp;·&nbsp; <a href="mailto:embracing.dyslexia01@gmail.com">embracing.dyslexia01@gmail.com</a></p>
+  </footer>
+
+  <script>
+    function handleSubmit() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (!name || !email || !message) {
+        alert('Please fill out your name, email, and message before sending.');
+        return;
+      }
+      // Opens email client as a fallback since this is a static site
+      const subject = encodeURIComponent('Message from Embracing Dyslexia Project website');
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+      window.location.href = `mailto:embracing.dyslexia01@gmail.com?subject=${subject}&body=${body}`;
+      document.getElementById('successMsg').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

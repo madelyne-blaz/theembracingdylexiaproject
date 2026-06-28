@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources — Embracing Dyslexia Project</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1.5rem; }
+    .resource-card {
+      background: var(--blush);
+      border-radius: 16px;
+      padding: 1.8rem;
+      display: flex; flex-direction: column; gap: 0.8rem;
+      transition: transform 0.2s;
+    }
+    .resource-card:hover { transform: translateY(-3px); }
+    .resource-card .tag {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--rose);
+    }
+    .resource-card p { font-size: 0.9rem; color: var(--muted); font-weight: 300; flex: 1; }
+    .resource-card a.resource-link {
+      display: inline-block;
+      font-size: 0.83rem; font-weight: 600;
+      color: var(--teal); text-decoration: none;
+    }
+    .resource-card a.resource-link:hover { text-decoration: underline; }
+
+    .kit-section {
+      background: var(--teal);
+      color: var(--cream);
+      border-radius: 24px;
+      padding: 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-top: 1rem;
+    }
+    .kit-section h2 { color: var(--cream); }
+    .kit-section p { color: rgba(248,240,224,0.75); font-weight: 300; margin-top: 0.8rem; margin-bottom: 1.5rem; }
+    .kit-items { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .kit-items li {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 0.7rem 1rem;
+      font-size: 0.9rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+
+    .warning-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1.2rem; }
+    .warning-card {
+      background: var(--ivory);
+      border-radius: 14px;
+      padding: 1.4rem;
+      border-left: 3px solid var(--rose);
+    }
+    .warning-card h4 { font-size: 0.88rem; color: var(--teal); margin-bottom: 0.4rem; font-family: 'Playfair Display', serif; }
+    .warning-card p { font-size: 0.82rem; color: var(--muted); font-weight: 300; }
+
+    /* ─── FILTER TABS ─── */
+    .filter-bar {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      border: 2px solid var(--blush);
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.83rem; font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--teal); color: var(--teal); }
+    .filter-btn.active { background: var(--teal); border-color: var(--teal); color: var(--cream); }
+
+    /* ─── ORG CARDS ─── */
+    .org-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .org-card {
+      background: var(--ivory);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1.5px solid var(--blush);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .org-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(15,121,114,0.1);
+    }
+
+    .org-card-top {
+      padding: 1.8rem 1.8rem 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.1rem;
+    }
+
+    .org-logo {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      font-weight: 900;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .org-meta { flex: 1; }
+    .org-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--teal);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.25rem;
+    }
+    .org-type {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+
+    .org-desc {
+      padding: 0 1.8rem 1.5rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .org-tags {
+      padding: 0 1.8rem 1.2rem;
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+    }
+    .org-tag {
+      background: var(--blush);
+      color: var(--teal);
+      border-radius: 100px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .org-footer {
+      border-top: 1px solid var(--blush);
+      padding: 1rem 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .org-footer span {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+    .org-link {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      background: var(--teal);
+      color: var(--cream);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.45rem 1.1rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .org-link:hover { background: var(--teal-dk); }
+
+    /* ─── HIDDEN CARDS ─── */
+    .org-card[data-hidden="true"] { display: none; }
+
+    /* ─── INTRO BANNER ─── */
+    .intro-banner {
+      background: var(--teal);
+      color: var(--cream);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .intro-banner .icon { font-size: 2.5rem; flex-shrink: 0; }
+    .intro-banner h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--cream);
+      margin-bottom: 0.4rem;
+    }
+    .intro-banner p { font-size: 0.9rem; color: rgba(248,240,224,0.75); font-weight: 300; }
+
+    @media (max-width: 700px) {
+      .kit-section { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .org-grid { grid-template-columns: 1fr; }
+      .intro-banner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="../index.html">Embracing Dyslexia Project</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="media.html">Media</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-label">Resources</span>
+      <h1>Tools for <em>every</em> reader.</h1>
+      <p>Whether you're a parent, teacher, or someone navigating dyslexia yourself, everything here is free and made to help.</p>
+    </div>
+  </div>
+
+  <!-- GUIDES -->
+  <section>
+    <div class="container">
+      <span class="section-label">Guides & Downloads</span>
+      <h2>Free resources.</h2>
+      <p class="section-intro">Printable guides and visual tools you can use right away.</p>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="tag">Warning Signs</span>
+          <h3>Signs of Dyslexia by Age</h3>
+          <p>A printable guide covering the early warning signs of dyslexia from preschool through adulthood. A must for every teacher and parent.</p>
+          <a class="resource-link" href="https://drive.google.com/file/d/1pKPkSdBBsDubqdAnACrVZSFYDV513KN3/view?usp=sharing" target="_blank">Download the PDF →</a>
+        </div>
+        <div class="resource-card">
+          <span class="tag">Education</span>
+          <h3>Understanding Dyslexia</h3>
+          <p>An accessible, visual guide to what dyslexia actually is — debunking common myths and building real, compassionate understanding.</p>
+          <a class="resource-link" href="https://understanding-dyslexia.my.canva.site/" target="_blank">Read the guide →</a>
+        </div>
+        <div class="resource-card">
+          <span class="tag">Support</span>
+          <h3>How to Support Others with Dyslexia</h3>
+          <p>Practical, actionable strategies for family members, educators, and friends who want to meaningfully support someone with dyslexia.</p>
+          <a class="resource-link" href="https://understanding-dyslexia.my.canva.site/how-to-support-others-with-dyslexia" target="_blank">Read the guide →</a>
+        </div>
+        <div class="resource-card">
+          <span class="tag">Watch</span>
+          <h3>Embracing Dyslexia YouTube</h3>
+          <p>My YouTube channel is dedicated to dyslexia education — personal stories, tips, and tools to help build confidence for learners and families.</p>
+          <a class="resource-link" href="https://www.youtube.com/channel/UCCdyasAPVzFI2F5M3LvDJuw?sub_confirmation=1" target="_blank">Watch & Subscribe →</a>
+        </div>
+        <div class="resource-card">
+          <span class="tag">Connect</span>
+          <h3>Request Reading Kits or Trainings About Dyslexia </h3>
+          <p>Interested in getting my dyslexia reading kits in your school or community? Want me to come educate students and teachers about dyslexia? I love any and every opportunity to educate people about dyslexia. Reach out and let's connect!</p>
+          <a class="resource-link" href="contact.html">Contact me →</a>
+        </div>
+        <div class="resource-card">
+          <span class="tag">Community</span>
+          <h3>Follow on Instagram</h3>
+          <p>Stay up to date with the latest resources, advocacy tips, and behind-the-scenes moments from my journey.</p>
+          <a class="resource-link" href="https://instagram.com/embracing.dyslexia" target="_blank">@embracing.dyslexia →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- READING KIT -->
+  <section style="background: var(--ivory);">
+    <div class="container">
+      <span class="section-label">Dyslexia Reading Kits</span>
+      <h2>What's in a reading kit?</h2>
+      <div class="kit-section">
+        <div>
+          <h2>Built to support. Designed to empower.</h2>
+          <p>My dyslexia reading kits are carefully put together with tools that make a real difference for struggling readers at home and in the classroom. Over 1,000 have been distributed in my community.</p>
+          <a class="btn" style="background: var(--rose); border-color: var(--rose);" href="contact.html">Request a Kit</a>
+        </div>
+        <ul class="kit-items">
+          <li>A Guided Reading Strip
+            <p>A transparent colored strip of plastic, used to help readers focus on one line of text at a time</p>
+          </li>
+          <li>A Whisper Phone
+            <p>This device resembles a phone and is held up to the ear, allowing you to read quietly without disturbing those nearby.</p>
+          </li>
+          <li>Resource Pamphlet
+            <p>This pamphlet includes additional resources that can help build confident readers by giving additional tips and ideas to help struggling readers.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WARNING SIGNS -->
+  <section>
+    <div class="container">
+      <span class="section-label">Know the Signs</span>
+      <h2>Common signs of dyslexia.</h2>
+      <p class="section-intro">Early identification is key. Here are some signs to look for — by age and stage.</p>
+      <div class="warning-grid">
+        <div class="warning-card">
+          <h4>Preschool & Kindergarten</h4>
+          <p>Difficulty learning nursery rhymes, trouble recognizing letters in their own name, delayed speech development.</p>
+        </div>
+        <div class="warning-card">
+          <h4>Early Elementary</h4>
+          <p>Trouble sounding out new words, slow or choppy reading, difficulty spelling even simple words.</p>
+        </div>
+        <div class="warning-card">
+          <h4>Upper Elementary</h4>
+          <p>Avoids reading aloud, struggles to read fluently, has trouble understanding what they read.</p>
+        </div>
+        <div class="warning-card">
+          <h4>Middle & High School</h4>
+          <p>Takes much longer to complete reading/writing tasks, poor spelling despite effort, trouble with foreign languages.</p>
+        </div>
+        <div class="warning-card">
+          <h4>Adults</h4>
+          <p>Reads slowly, avoids reading when possible, difficulty with writing and spelling, may have learned compensating strategies.</p>
+        </div>
+        <div class="warning-card">
+          <h4>All Ages</h4>
+          <p>Strong verbal skills but struggles on paper. Creative, bright, and capable, but reading feels like a fight.</p>
+        </div>
+      </div>
+      <div style="margin-top: 2rem;">
+        <a class="btn" href="https://drive.google.com/file/d/1pKPkSdBBsDubqdAnACrVZSFYDV513KN3/view?usp=sharing" target="_blank">Download the Full Guide</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORGANIZATIONS -->
+  <section style="background: var(--ivory);">
+    <div class="container">
+      <span class="section-label">Recommended Organizations</span>
+      <h2>Organizations doing incredible work.</h2>
+
+      <div class="intro-banner">
+        <div class="icon">💡</div>
+        <div>
+          <h3>Hadley's picks</h3>
+          <p>These are organizations doing incredible work in the dyslexia space. Whether you're a parent just starting out, a teacher looking for strategies, or someone who was just diagnosed — there's something here for you.</p>
+        </div>
+      </div>
+
+      <!-- FILTER -->
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
+        <button class="filter-btn" onclick="filterCards('parents', this)">For Parents</button>
+        <button class="filter-btn" onclick="filterCards('educators', this)">For Educators</button>
+        <button class="filter-btn" onclick="filterCards('research', this)">Research</button>
+        <button class="filter-btn" onclick="filterCards('advocacy', this)">Advocacy</button>
+      </div>
+
+      <!-- ORG CARDS -->
+      <div class="org-grid" id="orgGrid">
+
+        <!-- IDA -->
+        <div class="org-card" data-tags="parents educators advocacy research">
+          <div class="org-card-top">
+            <div class="org-logo" style="background: #e8f4f3; color: var(--teal);">IDA</div>
+            <div class="org-meta">
+              <div class="org-name">International Dyslexia Association</div>
+              <div class="org-type">Nonprofit · Global</div>
+            </div>
+          </div>
+          <p class="org-desc">The leading organization dedicated to the study and treatment of dyslexia. The IDA provides fact sheets, a dyslexia handbook, structured literacy resources, and connections to local chapters — making it one of the most comprehensive starting points for anyone affected by dyslexia.</p>
+          <div class="org-tags">
+            <span class="org-tag">Parents</span>
+            <span class="org-tag">Educators</span>
+            <span class="org-tag">Advocacy</span>
+            <span class="org-tag">Research</span>
+          </div>
+          <div class="org-footer">
+            <span>dyslexiaida.org</span>
+            <a class="org-link" href="https://dyslexiaida.org/" target="_blank">Visit →</a>
+          </div>
+        </div>
+
+        <!-- Made By Dyslexia -->
+        <div class="org-card" data-tags="parents educators advocacy">
+          <div class="org-card-top">
+            <div class="org-logo" style="background: #fff3e0; color: #e65100;">MBD</div>
+            <div class="org-meta">
+              <div class="org-name">Made By Dyslexia</div>
+              <div class="org-type">Global Charity · Led by Dyslexics</div>
+            </div>
+          </div>
+          <p class="org-desc">A global charity led by successful dyslexic people whose mission is to change how the world sees dyslexia — focusing on strengths, not just challenges. They offer free training on Microsoft Learn and LinkedIn Learning, a Dyslexic Thinking test, podcasts, and resources for schools and workplaces. Dyslexic Thinking is now an official skill on LinkedIn thanks to their work.</p>
+          <div class="org-tags">
+            <span class="org-tag">Parents</span>
+            <span class="org-tag">Educators</span>
+            <span class="org-tag">Advocacy</span>
+            <span class="org-tag">Free Training</span>
+          </div>
+          <div class="org-footer">
+            <span>madebydyslexia.org</span>
+            <a class="org-link" href="https://www.madebydyslexia.org/" target="_blank">Visit →</a>
+          </div>
+        </div>
+
+        <!-- Understood -->
+        <div class="org-card" data-tags="parents educators">
+          <div class="org-card-top">
+            <div class="org-logo" style="background: #e8eaf6; color: #3949ab;">U</div>
+            <div class="org-meta">
+              <div class="org-name">Understood</div>
+              <div class="org-type">Nonprofit · Learning Differences</div>
+            </div>
+          </div>
+          <p class="org-desc">The leading nonprofit supporting the 70 million people in the US with learning and thinking differences. Understood offers expert-written articles, videos, interactive tools, and a free dyslexia fact sheet — all in plain language. Their "Through My Eyes" experience lets you see what daily life feels like for a child with dyslexia, ADHD, or dyscalculia.</p>
+          <div class="org-tags">
+            <span class="org-tag">Parents</span>
+            <span class="org-tag">Educators</span>
+            <span class="org-tag">Articles</span>
+            <span class="org-tag">Videos</span>
+          </div>
+          <div class="org-footer">
+            <span>understood.org</span>
+            <a class="org-link" href="https://www.understood.org/en/topics/dyslexia" target="_blank">Visit →</a>
+          </div>
+        </div>
+
+        <!-- Yale -->
+        <div class="org-card" data-tags="research parents educators">
+          <div class="org-card-top">
+            <div class="org-logo" style="background: #fce4ec; color: #880e4f;">Y</div>
+            <div class="org-meta">
+              <div class="org-name">Yale Center for Dyslexia & Creativity</div>
+              <div class="org-type">Research Center · Yale School of Medicine</div>
+            </div>
+          </div>
+          <p class="org-desc">Founded by world-renowned dyslexia scientists Drs. Sally and Bennett Shaywitz, the Yale Center is the leading source of cutting-edge research and science-backed resources on dyslexia. They offer a free 12-hour Coursera course on dyslexia, success stories of accomplished dyslexic adults, and practical tools for parents and educators. Their mission: illuminate the strengths — not just the challenges — of dyslexia.</p>
+          <div class="org-tags">
+            <span class="org-tag">Research</span>
+            <span class="org-tag">Parents</span>
+            <span class="org-tag">Free Course</span>
+            <span class="org-tag">Success Stories</span>
+          </div>
+          <div class="org-footer">
+            <span>dyslexia.yale.edu</span>
+            <a class="org-link" href="https://dyslexia.yale.edu/" target="_blank">Visit →</a>
+          </div>
+        </div>
+
+        <!-- LDA -->
+        <div class="org-card" data-tags="parents advocacy educators">
+          <div class="org-card-top">
+            <div class="org-logo" style="background: #e8f5e9; color: #2e7d32;">LDA</div>
+            <div class="org-meta">
+              <div class="org-name">Learning Disabilities Association of America</div>
+              <div class="org-type">Nonprofit · Since 1963</div>
+            </div>
+          </div>
+          <p class="org-desc">The largest member-based nonprofit advocating for individuals with learning disabilities — including dyslexia — since 1963. With over 100 state and local chapters, LDA provides support, education, and advocacy for nearly 3 million students and their families. A go-to source for understanding your legal rights, finding local support, and connecting with a national community.</p>
+          <div class="org-tags">
+            <span class="org-tag">Parents</span>
+            <span class="org-tag">Advocacy</span>
+            <span class="org-tag">Legal Rights</span>
+            <span class="org-tag">Local Chapters</span>
+          </div>
+          <div class="org-footer">
+            <span>ldaamerica.org</span>
+            <a class="org-link" href="https://ldaamerica.org/disabilities/dyslexia/" target="_blank">Visit →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SUGGEST A RESOURCE -->
+  <section style="background: var(--blush); text-align: center;">
+    <div class="container" style="max-width: 620px;">
+      <span class="section-label">Know a great resource?</span>
+      <h2>Help grow this list.</h2>
+      <p class="section-intro" style="margin: 0 auto 2rem;">If you've found a resource that's made a difference for you or someone you love, I'd love to hear about it and potentially add it here.</p>
+      <a class="btn" href="contact.html">Send a Recommendation</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Hadley · Embracing Dyslexia Project &nbsp;·&nbsp; Miss America Opportunity &nbsp;·&nbsp; <a href="mailto:embracing.dyslexia01@gmail.com">embracing.dyslexia01@gmail.com</a></p>
+  </footer>
+
+  <script>
+    function filterCards(tag, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.org-card').forEach(card => {
+        if (tag === 'all') {
+          card.style.display = '';
+        } else {
+          const tags = card.getAttribute('data-tags') || '';
+          card.style.display = tags.includes(tag) ? '' : 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
